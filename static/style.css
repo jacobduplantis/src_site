@@ -1,0 +1,52 @@
+/* Define the color palette as CSS variables */
+:root {
+    --primary-color:   #461D7C; /* Dark Purple */
+    --secondary-color: #FDD023; /* Bright Yellow */
+    --accent-color:    #3C1053; /* Deep Purple */
+    --light-color:     #A39AAC; /* Light Purple/Grey */
+    --highlight-color: #D29F13; /* Gold-ish */
+    --background-color:#D0D0CE; /* Light Grey */
+    --gray-color:      #999999; /* Medium Gray */
+    --dark-gray:       #333333; /* Dark Gray */
+  }
+  
+  /* Global styles */
+  body {
+    background-color: var(--background-color) !important;
+    color: var(--dark-gray);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Navbar styles */
+  .navbar {
+    background-color: var(--primary-color) !important;
+  }
+  .navbar .navbar-brand,
+  .navbar .nav-link {
+    color: var(--secondary-color) !important;
+  }
+  
+  /* Table styles (if used) */
+  .table thead {
+    background-color: var(--accent-color) !important;
+    color: var(--secondary-color) !important;
+  }
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--light-color) !important;
+  }
+  .table-striped tbody tr:nth-of-type(even) {
+    background-color: var(--background-color) !important;
+  }
+  
+  /* Button styles */
+  .btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--accent-color) !important;
+  }
+  .btn-primary:hover {
+    background-color: var(--accent-color) !important;
+    border-color: var(--highlight-color) !important;
+  }
+  

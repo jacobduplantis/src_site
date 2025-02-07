@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Manage Your Lists{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Manage Your Lists</h2>
+  <form method="POST" action="{{ url_for('manage_lists') }}">
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>Select</th>
+            <th>List Name</th>
+            <th>Favorite</th>
+            <th>Shared With</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for list in lists %}
+          <tr>
+            <!-- Checkbox to select a list for deletion -->
+            <td>
+              <input type="checkbox" name="list_ids" value="{{ list.id }}">
+            </td>
+            <!-- List Name: clickable link to view details -->
+            <td>
+              <a href="{{ url_for('view_list', list_id=list.id) }}">{{ list.name }}</a>
+            </td>
+            <!-- Favorite status and toggle button -->
+            <td>
+              {% if list.is_favorite %}
+                <span class="badge bg-success">Yes</span>
+              {% else %}
+                <span class="badge bg-secondary">No</span>
+              {% endif %}
+              <form action="{{ url_for('toggle_favorite', list_id=list.id) }}" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-sm btn-outline-primary">Toggle</button>
+              </form>
+            </td>
+            <!-- Shared With column and a Share button -->
+            <td>
+              {% if list.shared_with %}
+                {% for user in list.shared_with %}
+                  <span class="badge bg-info text-dark">{{ user.username }}</span>
+                {% endfor %}
+              {% else %}
+                <span class="text-muted">None</span>
+              {% endif %}
+              <a href="{{ url_for('share_list', list_id=list.id) }}" class="btn btn-sm btn-outline-secondary">Share</a>
+            </td>
+            <!-- Action: View List details -->
+            <td>
+              <a href="{{ url_for('view_list', list_id=list.id) }}" class="btn btn-sm btn-info">View</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <!-- Button to delete the selected lists (with confirmation) -->
+    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete the selected lists?');">Delete Selected</button>
+  </form>
+</div>
+{% endblock %}

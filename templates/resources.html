@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Master Resources{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Master Resource List</h2>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Population Served</th>
+          <th>Location</th>
+          <th>Hours</th>
+          {% if current_user.is_authenticated and current_user.is_admin %}
+            <th>Actions</th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for resource in resources %}
+        <tr>
+          <td>
+            <a href="{{ url_for('resource_detail', resource_id=resource.id) }}">
+              {{ resource.name }}
+            </a>
+          </td>
+          <td>{{ resource.category }}</td>
+          <td>{{ resource.population_served }}</td>
+          <td>{{ resource.location }}</td>
+          <td>{{ resource.hours }}</td>
+          {% if current_user.is_authenticated and current_user.is_admin %}
+          <td>
+            <form action="{{ url_for('admin_delete_resource', resource_id=resource.id) }}" method="post" 
+                  onsubmit="return confirm('Are you sure you want to delete this resource?');" style="display:inline;">
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

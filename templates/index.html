@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="jumbotron mt-4 p-5 bg-light rounded">
+  <h1 class="display-4">Welcome to Community Resources</h1>
+  <p class="lead">Find and organize community resources tailored to your needs.</p>
+  <hr class="my-4">
+  <p>Sign up or log in to create your personalized resource list.</p>
+  <a class="btn btn-primary btn-lg" href="{{ url_for('signup') }}" role="button">Get Started</a>
+</div>
+{% endblock %}

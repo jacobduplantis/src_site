@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2 class="mt-4">Your Resource Lists</h2>
+<div class="list-group">
+  {% for lst in lists %}
+    <a href="{{ url_for('view_list', list_id=lst.id) }}" class="list-group-item list-group-item-action">
+      {{ lst.name }}
+    </a>
+  {% endfor %}
+</div>
+<div class="mt-3">
+  <a href="{{ url_for('create_list') }}" class="btn btn-success">Create a New List</a>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Admin: Add Master Resource{% endblock %}
+{% block content %}
+<h2 class="mt-4">Add a New Master Resource</h2>
+<form method="POST">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">
+    {{ form.name.label(class="form-label") }}
+    {{ form.name(class="form-control", placeholder="Enter resource name") }}
+  </div>
+  <div class="mb-3">
+    {{ form.category.label(class="form-label") }}
+    {{ form.category(class="form-control", placeholder="Enter category") }}
+  </div>
+  <div class="mb-3">
+    {{ form.population_served.label(class="form-label") }}
+    {{ form.population_served(class="form-control", placeholder="Enter population served") }}
+  </div>
+  <div class="mb-3">
+    {{ form.location.label(class="form-label") }}
+    {{ form.location(class="form-control", rows="3", placeholder="Enter location") }}
+  </div>
+  <div class="mb-3">
+    {{ form.hours.label(class="form-label") }}
+    {{ form.hours(class="form-control", rows="2", placeholder="Enter hours") }}
+  </div>
+  <div class="mb-3">
+    {{ form.contact_information.label(class="form-label") }}
+    {{ form.contact_information(class="form-control", rows="2", placeholder="Enter contact info") }}
+  </div>
+  <div class="mb-3">
+    {{ form.eligibility.label(class="form-label") }}
+    {{ form.eligibility(class="form-control", rows="2", placeholder="Enter eligibility") }}
+  </div>
+  <div class="mb-3">
+    {{ form.details.label(class="form-label") }}
+    {{ form.details(class="form-control", rows="3", placeholder="Enter details") }}
+  </div>
+  <div class="mb-3">
+    {{ form.submit(class="btn btn-primary") }}
+  </div>
+</form>
+{% endblock %}

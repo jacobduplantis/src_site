@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}View List{% endblock %}
+{% block content %}
+<h2 class="mt-4">{{ resource_list.name }}</h2>
+<ul class="list-group">
+  {% for resource in resource_list.resources %}
+    <li class="list-group-item">
+      <strong>{{ resource.name }}</strong> – {{ resource.category }}
+    </li>
+  {% endfor %}
+</ul>
+<div class="mt-3">
+  <a href="{{ url_for('add_resource_to_list', list_id=resource_list.id) }}" class="btn btn-info">Add Resource to This List</a>
+  <a href="{{ url_for('print_list', list_id=resource_list.id) }}" class="btn btn-info">
+    Print This List
+  </a>
+</div>
+<div class="mt-3">
+  <a href="{{ url_for('dashboard') }}" class="btn btn-link">Back to Dashboard</a>
+</div>
+{% endblock %}

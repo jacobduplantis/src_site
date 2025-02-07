@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Resource Detail{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h2>{{ resource.name }}</h2>
+  <div class="card">
+    <div class="card-body">
+      <p><strong>Category:</strong> {{ resource.category }}</p>
+      <p><strong>Population Served:</strong> {{ resource.population_served }}</p>
+      <p><strong>Location:</strong> {{ resource.location }}</p>
+      <p><strong>Hours:</strong> {{ resource.hours }}</p>
+      <p><strong>Contact Information:</strong> {{ resource.contact_information }}</p>
+      <p><strong>Eligibility:</strong> {{ resource.eligibility }}</p>
+      <p><strong>Details:</strong> {{ resource.details }}</p>
+    </div>
+  </div>
+  <a href="{{ url_for('master_resources') }}" class="btn btn-secondary mt-3">Back to Resources</a>
+</div>
+{% endblock %}

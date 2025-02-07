@@ -1,0 +1,26 @@
+<!-- templates/print_list_select.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Select Columns to Print</title>
+  <!-- You may include your custom CSS here if desired -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container mt-4">
+    <h2>Select Columns for Printout: "{{ resource_list.name }}"</h2>
+    <form method="POST" action="{{ url_for('print_list', list_id=resource_list.id) }}">
+      {% for col_key, col_label in columns %}
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="columns" value="{{ col_key }}" id="col_{{ col_key }}" checked>
+          <label class="form-check-label" for="col_{{ col_key }}">
+            {{ col_label }}
+          </label>
+        </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary mt-3">Generate Print View</button>
+    </form>
+  </div>
+</body>
+</html>

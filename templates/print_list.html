@@ -1,0 +1,73 @@
+<!-- templates/print_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Print View - {{ resource_list.name }}</title>
+  <style>
+    /* Minimal, print-friendly styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      color: #333;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #461D7C; /* Dark Purple */
+      color: #FDD023;           /* Bright Yellow */
+    }
+  </style>
+</head>
+<body onload="window.print()">
+  <h2>{{ resource_list.name }} - Print View</h2>
+  <table>
+    <thead>
+      <tr>
+        {% for col in selected_columns %}
+          <th>
+            {% if col == 'name' %}
+              Name
+            {% elif col == 'category' %}
+              Category
+            {% elif col == 'population_served' %}
+              Population Served
+            {% elif col == 'location' %}
+              Location
+            {% elif col == 'hours' %}
+              Hours
+            {% elif col == 'contact_information' %}
+              Contact Information
+            {% elif col == 'eligibility' %}
+              Eligibility
+            {% elif col == 'details' %}
+              Details
+            {% endif %}
+          </th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for resource in resource_list.resources %}
+      <tr>
+        {% for col in selected_columns %}
+          <td>{{ getattr(resource, col) }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
